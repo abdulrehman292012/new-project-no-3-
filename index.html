@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fill Review Form</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #ffffff;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .form-container {
+            width: 100%;
+            max-width: 700px;
+            padding: 10px;
+        }
+
+        /* Top Progress Wizard Bar */
+        .step-wizard {
+            display: flex;
+            width: 100%;
+            margin-bottom: 40px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+        .wizard-item {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            background-color: #cccccc;
+            color: #333;
+        }
+        .wizard-item.active-blue {
+            background-color: #6ba4e8;
+            color: black;
+        }
+        .wizard-item.active-green {
+            background-color: #a3d9a5;
+            color: black;
+        }
+
+        /* Fieldset Box */
+        fieldset {
+            border: 1px solid #999999;
+            padding: 25px 20px;
+            margin-bottom: 25px;
+            position: relative;
+        }
+        legend {
+            font-size: 16px;
+            padding: 0 10px;
+        }
+
+        /* Form Inputs Layout */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 6px;
+            color: #000;
+        }
+        input[type="text"], input[type="email"], input[type="password"], select, textarea {
+            width: 100%;
+            padding: 6px 8px;
+            border: 1px solid #cccccc;
+            font-size: 14px;
+        }
+        textarea {
+            height: 110px;
+            resize: vertical;
+        }
+        .radio-inline {
+            display: inline-flex;
+            align-items: center;
+            margin-right: 15px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        .radio-inline input {
+            margin-right: 6px;
+        }
+
+        /* CNIC Separate Box Inputs */
+        .cnic-row {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .cnic-box {
+            width: 32px;
+            height: 32px;
+            text-align: center;
+            border: 1px solid #cccccc;
+            font-size: 15px;
+        }
+        .cnic-dash {
+            font-weight: bold;
+            font-size: 18px;
+            padding: 0 2px;
+        }
+
+        /* Images Based Custom Dark Blue Buttons */
+        .btn-row {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .custom-btn {
+            background-color: #0a3d62;
+            color: white;
+            border: none;
+            padding: 8px 24px;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 20px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .custom-btn:hover {
+            opacity: 0.9;
+        }
+        .custom-btn .circle-icon {
+            background-color: white;
+            color: #0a3d62;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 11px;
+        }
+
+        /* Welcome Page Graphics */
+        .welcome-screen {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .welcome-screen h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        .welcome-divider {
+            border-top: 1px solid #cccccc;
+            margin-bottom: 20px;
+        }
+        .welcome-screen p {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #111111;
+        }
+        .welcome-screen h3 {
+            font-size: 14px;
+            margin: 20px 0 10px 0;
+        }
+        .start-circle-btn {
+            background-color: #8bc34a;
+            color: white;
+            border: none;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            font-size: 22px;
+            cursor: pointer;
+            margin-top: 25px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* Page Display Logic */
+        .form-page {
+            display: none;
+        }
+        .form-page.active-page {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+
+    <div id="screen-welcome" class="form-page active-page welcome-screen">
+        <h1>Fill Review Form</h1>
+        <div class="welcome-divider"></div>
+        <p>This form is particularly designed to take input for our current survey. fill up this from so that we can end up all of our activities and provide a best solution for the current affairs in the society.</p>
+        <h3>This form contains following sections:</h3>
+        <p><strong>Account Details.<br>Personal Details.<br>Review Section.</strong></p>
+        <p style="margin-top: 25px; font-size: 13px;">Click below to start</p>
+        <button type="button" class="start-circle-btn" onclick="showPage('screen-step1')">➔</button>
+    </div>
+
+    <form id="reviewMultiForm" action="done.html" method="GET">
+        
+        <div id="screen-step1" class="form-page">
+            <div class="step-wizard">
+                <div class="wizard-item active-blue">Step 1: Account</div>
+                <div class="wizard-item">Step 2: Personal Details</div>
+                <div class="wizard-item">Step 3: Your Review</div>
+            </div>
+            
+            <fieldset>
+                <legend>Account</legend>
+                <div class="form-group">
+                    <label>Email Address:</label>
+                    <input type="email" placeholder="Enter Email" required>
+                </div>
+                <div class="form-group">
+                    <label>Password:</label>
+                    <input type="password" placeholder="Enter Password" required>
+                </div>
+                <div class="form-group">
+                    <label>Confirm Password:</label>
+                    <input type="password" placeholder="Confirm Password" required>
+                </div>
+            </fieldset>
+
+            <div class="btn-row">
+                <button type="button" class="custom-btn" onclick="showPage('screen-welcome')">
+                    <span class="circle-icon">◀️</span> Back
+                </button>
+                <button type="button" class="custom-btn" onclick="showPage('screen-step2')">
+                    Next <span class="circle-icon">▶️</span>
+                </button>
+            </div>
+        </div>
+
+        <div id="screen-step2" class="form-page">
+            <div class="step-wizard">
+                <div class="wizard-item active-green">Step 1: Account</div>
+                <div class="wizard-item active-blue">Step 2: Personal Details</div>
+                <div class="wizard-item">Step 3: Your Review</div>
+            </div>
+
+            <fieldset>
+                <legend>Personal Details</legend>
+                <div class="form-group">
+                    <label>First Name:</label>
+                    <input type="text" placeholder="Enter First Name" required>
+                </div>
+                <div class="form-group">
+                    <label>Last Name:</label>
+                    <input type="text" placeholder="Enter Last Name" required>
+                </div>
+                <div class="form-group">
+                    <label>CNIC:</label>
+                    <div class="cnic-row">
+                        <input type="text" class="cnic-box" maxlength="1" onkeyup="tabForward(this, 'n2')">
+                        <input type="text" id="n2" class="cnic-box" maxlength="1" onkeyup="tabForward(this, 'n3')">
+                        <input type="text" id="n3" class="cnic-box" maxlength="1" onkeyup="tabForward(this, 'n4')">
+                        <input type="text" id="n4" class="cnic-box" maxlength="1" onkeyup="tabForward(this, 'n5')">
+                        <input type="text" id="n5" class="cnic-box" maxlength="1" onkeyup="tabForward(this, 'n6')">
+                        <span class="cnic-dash">-</span>
+                        <input type="text" id="n6" class="cnic-box" maxlength="1" onkeyup="tabForward(this, 'n7')">
+                        <input type="text" id="n7" class="cnic-box" maxlength="1" onkeyup="tabForward(this, 'n8')">
+                        <input type="text" id="n8" class="cnic-box" maxlength="1" onkeyup="tabForward(this, 'n9')">
+                        <input type="text" id="n9" class="cnic-box" maxlength="1" onkeyup="tabForward(this, 'n10')">
+                        <input type="text" id="n10" class="cnic-box" maxlength="1" onkeyup="tabForward(this, 'n11')">
+                        <input type="text" id="n11" class="cnic-box" maxlength="1" onkeyup="tabForward(this, 'n12')">
+                        <input type="text" id="n12" class="cnic-box" maxlength="1" onkeyup="tabForward(this, 'n13')">
+                        <span class="cnic-dash">-</span>
+                        <input type="text" id="n13" class="cnic-box" maxlength="1">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Social Link:</label>
+                    <input type="text" placeholder="Enter Facebook/Linkedin profile linke">
+                </div>
+            </fieldset>
+
+            <div class="btn-row">
+                <button type="button" class="custom-btn" onclick="showPage('screen-step1')">
+                    <span class="circle-icon">◀️</span> Back
+                </button>
+                <button type="button" class="custom-btn" onclick="showPage('screen-step3')">
+                    Next <span class="circle-icon">▶️</span>
+                </button>
+            </div>
+        </div>
+
+        <div id="screen-step3" class="form-page">
+            <div class="step-wizard">
+                <div class="wizard-item active-green">Step 1: Account</div>
+                <div class="wizard-item active-green">Step 2: Personal Details</div>
+                <div class="wizard-item active-blue">Step 3: Your Review</div>
+            </div>
+
+            <fieldset>
+                <legend>Your Review</legend>
+                <div class="form-group">
+                    <label style="display: inline-block; margin-right: 10px;">How did you hear about us?</label>
+                    <select style="width: auto; display: inline-block;">
+                        <option>Select your option</option>
+                        <option>Social Media</option>
+                        <option>Google</option>
+                        <option>Friend</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Would you visit again?</label>
+                    <label class="radio-inline"><input type="radio" name="visit"> Yes</label>
+                    <label class="radio-inline"><input type="radio" name="visit"> No</label>
+                    <label class="radio-inline"><input type="radio" name="visit"> Maybe</label>
+                </div>
+                <div class="form-group">
+                    <label>Comments:</label>
+                    <textarea placeholder="Enter your comments here..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Documents:</label>
+                    <input type="file" style="font-size: 14px;">
+                </div>
+                <div class="form-group" style="margin-top: 15px;">
+                    <label class="radio-inline" style="font-weight: normal;">
+                        <input type="checkbox" checked> Sign me up for email updates
+                    </label>
+                </div>
+            </fieldset>
+
+            <div class="btn-row">
+                <button type="button" class="custom-btn" onclick="showPage('screen-step2')">
+                    <span class="circle-icon">◀️</span> Back
+                </button>
+                <button type="submit" class="custom-btn">
+                    Submit <span class="circle-icon">▶️</span>
+                </button>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<script>
+    // Navigation control function
+    function showPage(pageId) {
+        // Pehle saari screens ko hide karein
+        const pages = document.querySelectorAll('.form-page');
+        pages.forEach(page => {
+            page.classList.remove('active-page');
+        });
+        
+        // Target screen ko active class dein
+        document.getElementById(pageId).classList.add('active-page');
+    }
+
+    // CNIC character fill hone par automatic agle box par jump karne ka logic
+    function tabForward(currentField, nextFieldId) {
+        if (currentField.value.length >= currentField.maxLength) {
+            document.getElementById(nextFieldId).focus();
+        }
+    }
+</script>
+
+</body>
+</html>
